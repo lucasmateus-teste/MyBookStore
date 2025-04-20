@@ -34,7 +34,6 @@ class BookRepositoryImpl implements BookRepository {
 
   @override
   Future<List<BookModel>> searchBooks(int storeId, String query) {
-    // TODO: implement searchBooks
     throw UnimplementedError();
   }
 

@@ -12,6 +12,7 @@ import 'package:my_book_store/src/data/models/user/user_model.dart';
 import 'package:my_book_store/src/features/books/details/page/book_details_page.dart';
 import 'package:my_book_store/src/features/profile/edit/page/edit_profile_page.dart';
 import 'package:my_book_store/src/features/profile/overview/bloc/profile_overview_bloc.dart';
+import 'package:my_book_store/src/services/analytics_service.dart';
 
 class ProfileOverviewPage extends StatefulWidget {
   const ProfileOverviewPage({super.key, required this.user});
@@ -181,6 +182,7 @@ class _ProfileOverviewPageState extends State<ProfileOverviewPage> {
                           AppBookGridView(
                             books: state.savedBooks,
                             onTap: (book) async {
+                              await AnalyticsService.logClickBook(book: book);
                               await Navigator.push(
                                 NavigatorKeys.main.currentContext!,
                                 MaterialPageRoute(

@@ -17,6 +17,7 @@ import 'package:my_book_store/src/core/ui/widgets/app_book_grid_view.dart';
 import 'package:my_book_store/src/core/ui/widgets/app_books_list_view.dart';
 import 'package:my_book_store/src/data/models/user/user_model.dart';
 import 'package:my_book_store/src/features/home/bloc/home_bloc.dart';
+import 'package:my_book_store/src/services/analytics_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.user});
@@ -187,6 +188,7 @@ class _HomePageState extends State<HomePage> {
                       AppBooksListView(
                         books: state.savedBooks,
                         onTap: (book) async {
+                          await AnalyticsService.logClickBook(book: book);
                           await Navigator.push(
                             NavigatorKeys.main.currentContext!,
                             MaterialPageRoute(
@@ -212,6 +214,7 @@ class _HomePageState extends State<HomePage> {
                       AppBookGridView(
                         books: state.books,
                         onTap: (book) async {
+                          await AnalyticsService.logClickBook(book: book);
                           await Navigator.push(
                             NavigatorKeys.main.currentContext!,
                             MaterialPageRoute(

@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:my_book_store/src/core/config/dependencies.dart';
 import 'package:my_book_store/src/core/environment/environment.dart';
@@ -12,8 +13,21 @@ import 'package:my_book_store/src/features/auth/register/bloc/register_store_blo
 import 'package:my_book_store/src/features/auth/register/page/register_store_page.dart';
 import 'package:my_book_store/src/features/navigation/app_navigation_page.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  final analytics = FirebaseAnalytics.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    analytics.setAnalyticsCollectionEnabled(true);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -10,6 +10,7 @@ import 'package:my_book_store/src/features/books/admin/list/bloc/book_admin_bloc
 import 'package:my_book_store/src/features/books/details/page/book_details_page.dart';
 import 'package:my_book_store/src/core/ui/widgets/app_book_grid_view.dart';
 import 'package:my_book_store/src/features/books/admin/form/page/book_admin_form_page.dart';
+import 'package:my_book_store/src/services/analytics_service.dart';
 
 class BooksPage extends StatefulWidget {
   const BooksPage({super.key});
@@ -85,6 +86,7 @@ class _BooksPageState extends State<BooksPage> {
                         return AppBookGridView(
                           books: state.books,
                           onTap: (book) async {
+                            await AnalyticsService.logClickBook(book: book);
                             await Navigator.push(
                               NavigatorKeys.main.currentContext!,
                               MaterialPageRoute(
